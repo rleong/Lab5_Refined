@@ -27,5 +27,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/Lab5Client"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Lab5Jabber"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Lab5Server"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

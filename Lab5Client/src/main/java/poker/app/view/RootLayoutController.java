@@ -24,6 +24,7 @@ import pokerBase.Card;
 import pokerEnums.eGame;
 import pokerEnums.eRank;
 import pokerEnums.eSuit;
+import pokerEnums.eBettingRules;
 
 
 /**
@@ -105,6 +106,25 @@ public class RootLayoutController implements Initializable {
 		//	Pot Limit (this is NOT the default)
 		//	Group them together with a Toggle Group
 		//	Write a method to return which is selected.. .check out getRuleName()
+		
+		
+		Menu mnuBettingRules = new Menu();
+        mnuBettingRules.setText("Set Betting Rules");
+        mb.getMenus().add(0,mnuBettingRules);
+               
+        ToggleGroup tglGrpBettingRules = new ToggleGroup();
+       
+        for (eBettingRules eBettingRules : eBettingRules.values()) {
+            RadioMenuItem rmi = new RadioMenuItem(eBettingRules.toString());
+            rmi.setId("BettingRules" + String.valueOf(eBettingRules.getBettingRule()));
+            rmi.setToggleGroup(tglGrpBettingRules);
+            if (eBettingRules.getDefault())
+            {
+                rmi.setSelected(true);
+            }
+            mnuBettingRules.getItems().add(rmi);
+        }
+		
 
 	}
     
