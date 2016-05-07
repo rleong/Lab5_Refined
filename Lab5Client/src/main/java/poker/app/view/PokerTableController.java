@@ -66,13 +66,18 @@ public class PokerTableController {
 
 	public PokerTableController() {
 	}
-	
-	@FXML private ImageView imgViewDealerButtonPos1;
-	@FXML private ImageView imgViewDealerButtonPos2;
-	@FXML private ImageView imgViewDealerButtonPos3;
-	@FXML private ImageView imgViewDealerButtonPos4;
-	
-	@FXML private BorderPane OuterBorderPane;
+
+	@FXML
+	private ImageView imgViewDealerButtonPos1;
+	@FXML
+	private ImageView imgViewDealerButtonPos2;
+	@FXML
+	private ImageView imgViewDealerButtonPos3;
+	@FXML
+	private ImageView imgViewDealerButtonPos4;
+
+	@FXML
+	private BorderPane OuterBorderPane;
 
 	@FXML
 	private Label lblNumberOfPlayers;
@@ -98,18 +103,6 @@ public class PokerTableController {
 	private Label lblPos3Name;
 	@FXML
 	private Label lblPos4Name;
-	
-	@FXML
-	private HBox hBoxDeck;
-	
-	@FXML
-	private HBox hBoxCardsP1;
-	@FXML
-	private HBox hBoxCardsP2;
-	@FXML
-	private HBox hBoxCardsP3;
-	@FXML
-	private HBox hBoxCardsP4;
 
 	@FXML
 	private void initialize() {
@@ -178,8 +171,8 @@ public class PokerTableController {
 		lblPos3Name.setText("");
 		lblPos4Name.setText("");
 
-		//scanInputControls(OuterBorderPane, "SitLeave",true);
-		
+		// scanInputControls(OuterBorderPane, "SitLeave",true);
+
 		btnPos1SitLeave.setVisible(true);
 		btnPos2SitLeave.setVisible(true);
 		btnPos3SitLeave.setVisible(true);
@@ -246,88 +239,59 @@ public class PokerTableController {
 		}
 	}
 
-	public void Handle_GameState(GamePlay HubGamePlay) 
-	{
+	public void Handle_GameState(GamePlay HubGamePlay) {
 		/*
-		imgViewDealerButtonPos1.setVisible(false);
-		imgViewDealerButtonPos2.setVisible(false);
-		imgViewDealerButtonPos3.setVisible(false);
-		imgViewDealerButtonPos4.setVisible(false);
-		*/
+		 * imgViewDealerButtonPos1.setVisible(false);
+		 * imgViewDealerButtonPos2.setVisible(false);
+		 * imgViewDealerButtonPos3.setVisible(false);
+		 * imgViewDealerButtonPos4.setVisible(false);
+		 */
 
-		//TODO - Lab #5: Check to see if you're the dealer..  If you are, make the imgViewDealerButtonX visible = true
-		
-		hBoxDeck.getChildren().clear();
-		
-		Image imgB = new Image(getClass().getResourceAsStream("/img/b1fh.png"));
-		ImageView imgBottomCard = new ImageView(imgB);
-		imgBottomCard.setPreserveRatio(true);
-		imgBottomCard.setFitWidth(75);
-		imgBottomCard.setFitHeight(75);
-		hBoxDeck.getChildren().add(imgBottomCard);
-		
-		
+		// TODO - Lab #5: Check to see if you're the dealer.. If you are, make
+		// the imgViewDealerButtonX visible = true
+
 		imgViewDealerButtonPos1.setVisible(false);
 		imgViewDealerButtonPos2.setVisible(false);
 		imgViewDealerButtonPos3.setVisible(false);
 		imgViewDealerButtonPos4.setVisible(false);
-		
-		Iterator it = HubGamePlay.getGamePlayers().entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry pair = (Map.Entry) it.next();
-			Player p = (Player) pair.getValue();
-			switch (p.getiPlayerPosition()) {
-			case 1:
-				if (p.getPlayerID().equals(HubGamePlay.getGameDealer())) {
-					imgViewDealerButtonPos1.setVisible(true);
-					imgViewDealerButtonPos2.setVisible(false);
-					imgViewDealerButtonPos3.setVisible(false);
-					imgViewDealerButtonPos4.setVisible(false);
-				}
-				break;
-			case 2:
-				if (p.getPlayerID().equals(HubGamePlay.getGameDealer())) {
-					imgViewDealerButtonPos1.setVisible(false);
-					imgViewDealerButtonPos2.setVisible(true);
-					imgViewDealerButtonPos3.setVisible(false);
-					imgViewDealerButtonPos4.setVisible(false);
-				}
-				break;
-			case 3:
-				if (p.getPlayerID().equals(HubGamePlay.getGameDealer())) {
-					imgViewDealerButtonPos1.setVisible(false);
-					imgViewDealerButtonPos2.setVisible(false);
-					imgViewDealerButtonPos3.setVisible(true);
-					imgViewDealerButtonPos4.setVisible(false);
-				}
-				break;
-			case 4:
-				if (p.getPlayerID().equals(HubGamePlay.getGameDealer())) {
-					imgViewDealerButtonPos1.setVisible(false);
-					imgViewDealerButtonPos2.setVisible(false);
-					imgViewDealerButtonPos3.setVisible(false);
-					imgViewDealerButtonPos4.setVisible(true);
-				}
-				break;
-			default:
-				imgViewDealerButtonPos1.setVisible(false);
-				imgViewDealerButtonPos2.setVisible(false);
-				imgViewDealerButtonPos3.setVisible(false);
-				imgViewDealerButtonPos4.setVisible(false);}
+		Action act = new Action();
+		Player p = act.getPlayer();
+
+		if (p.getPlayerID().equals(HubGamePlay.getGameDealer())) {
+			imgViewDealerButtonPos1.setVisible(true);
+			imgViewDealerButtonPos2.setVisible(false);
+			imgViewDealerButtonPos3.setVisible(false);
+			imgViewDealerButtonPos4.setVisible(false);
+		} else if (p.getPlayerID().equals(HubGamePlay.getGameDealer())) {
+			imgViewDealerButtonPos1.setVisible(false);
+			imgViewDealerButtonPos2.setVisible(true);
+			imgViewDealerButtonPos3.setVisible(false);
+			imgViewDealerButtonPos4.setVisible(false);
+		} else if (p.getPlayerID().equals(HubGamePlay.getGameDealer())) {
+			imgViewDealerButtonPos1.setVisible(false);
+			imgViewDealerButtonPos2.setVisible(false);
+			imgViewDealerButtonPos3.setVisible(true);
+			imgViewDealerButtonPos4.setVisible(false);
+		} else if (p.getPlayerID().equals(HubGamePlay.getGameDealer())) {
+			imgViewDealerButtonPos1.setVisible(false);
+			imgViewDealerButtonPos2.setVisible(false);
+			imgViewDealerButtonPos3.setVisible(false);
+			imgViewDealerButtonPos4.setVisible(true);
+		} else {
+			imgViewDealerButtonPos1.setVisible(false);
+			imgViewDealerButtonPos2.setVisible(false);
+			imgViewDealerButtonPos3.setVisible(false);
+			imgViewDealerButtonPos4.setVisible(false);
 		}
 	}
+
 	@FXML
 	void btnStart_Click(ActionEvent event) {
-		Action act = new Action(eAction.StartGame, mainApp.getPlayer());		
+		Action act = new Action(eAction.StartGame, mainApp.getPlayer());
 		int iRuleNbr = Integer.parseInt(mainApp.getRuleName().replace("PokerGame", ""));
 		eGame Game = eGame.getGame(iRuleNbr);
 		act.seteGame(Game);
-		
-		hBoxCardsP1.getChildren().clear();
-		hBoxCardsP2.getChildren().clear();
-		hBoxCardsP3.getChildren().clear();
-		hBoxCardsP4.getChildren().clear();
-		
+
 		mainApp.messageSend(act);
 	}
 
@@ -352,24 +316,21 @@ public class PokerTableController {
 	}
 
 	private void scanInputControls(Pane parent, String strControlStartsWith, boolean bVisible) {
-	    for (Node component : parent.getChildren()) {
-	        if (component instanceof Pane) {
-	            //if the component is a container, scan its children
-	            scanInputControls((Pane) component, strControlStartsWith, bVisible);
-	        } else if (component instanceof TextField) {
-	        }
-	        else if (component instanceof Button)
-	        {
-	        	Button b = (Button)component;	        	
-	        	if ((b.getId() != null) && (b.getId().endsWith(strControlStartsWith)))
-	        	{
-	        		System.out.println(b.getId());
-	        		b.setVisible(bVisible);
-	        	}
-	        }
-	    }
+		for (Node component : parent.getChildren()) {
+			if (component instanceof Pane) {
+				// if the component is a container, scan its children
+				scanInputControls((Pane) component, strControlStartsWith, bVisible);
+			} else if (component instanceof TextField) {
+			} else if (component instanceof Button) {
+				Button b = (Button) component;
+				if ((b.getId() != null) && (b.getId().endsWith(strControlStartsWith))) {
+					System.out.println(b.getId());
+					b.setVisible(bVisible);
+				}
+			}
+		}
 	}
-	
+
 	private void FadeButton(Button btn) {
 		FadeTransition ft = new FadeTransition(Duration.millis(3000), btn);
 		ft.setFromValue(1.0);
